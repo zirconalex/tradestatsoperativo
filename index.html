@@ -1,343 +1,299 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trade Form - STATS. OPERATIVO - HTML to Sheets</title>
-       <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-        <div class="flex items-center h-full w-full bg-orange-100" style="text-align:center" >
-      <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
-        <h1 class="block w-full text-center text-grey-darkest mb-6" style="font-size:300%"><u><b>Trade Form</b></u></h1>
-
-        <form class="mb-4 flex flex-wrap justify-between" id="form">
-  
-       
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="PAIR"><b>PAIR</b></label>
-            <select name="PAIR" id="PAIR">
-              <option value="usd/jpy">usd/jpy</option>
-              <option value="eur/usd">eur/usd</option>
-              <option value="gbp/usd">gbp/usd</option>
-            
-              </select>
-          
-          </div>
-          
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="STATUS"><b>STATUS</b></label>
-            <select name="STATUS" id="STATUS">
-              <option value="win">Win</option>
-              <option value="loss">Loss</option>
-              <option value="Breakeven">Breakeven</option>
-              <option value="Missed">Missed</option>
-            </select>
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="POSITION"><b>POSITION</b></label>
-            <select name="POSITION" id="POSITION">
-              <option value="long">long</option>
-              <option value="short">short</option>
-            </select>
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="TIPO DI APERTURA"><b>TIPO DI APERTURA</b></label>
-            <select name="TIPO DI APERTURA" id="TIPO DI APERTURA" required>
-              <option value="Manuale">Manuale</option>
-              <option value="Pendente">Pendente</option>
-              <option value=""></option>
-          </select>
-          </div>
-
-          <div style="text-align:center">
-            <label for="ORARIO CHIUSURA"><b>ORARIO APERTURA:</b></label>
-
-           <input type="datetime-local" id="ORARIO APERTURA"
-            name="ORARIO APERTURA" value="YYYY-MM-DDThh:mm">
-          </div>
-
-          <div style="text-align:center">
-            <label for="ORARIO CHIUSURA"><b>ORARIO CHIUSURA:</b></label>
-
-            <input type="datetime-local" id="ORARIO CHIUSURA"
-             name="ORARIO CHIUSURA" value="YYYY-MM-DDThh:mm">
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="GIORNO DELLA SETT."><b>GIORNO DELLA SETT.</b></label>
-            <select name="GIORNO DELLA SETT." id="GIORNO DELLA SETT.">
-              <option value="lunedì">lunedì</option>
-              <option value="martedì">martedì</option>
-              <option value="mercoledì">mercoledì</option>
-              <option value="giovedì">giovedì</option>
-              <option value="venerdì">venerdì</option>
-            </select>
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="SESSION"><b>SESSION</b></label>
-            <select name="SESSION" id="SESSION">
-              <option value="london">london</option>
-              <option value="new york">new york</option>
-              <option value="asian">asian</option>
-          </select>
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="DURATA TRADE"><b>DURATA TRADE</b></label>
-            <input type="text" id="DURATA TRADE" name="DURATA TRADE" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" required>
-          </div>
-
-
-          <div class="flex flex-col w-full mb-4 outline">
-            <label class="field-label" for="SETUP"><b>SETUP</b></label>
-            
-          
-
-          <div class="formbuilder-checkbox w-full mb-4">
-            <input type="checkbox" name="SETUP" value="Asian Sweep">Asian Sweep<br>
-            <input type="checkbox" name="SETUP" value="Order Block Mitigation">Order Block Mitigation<br>
-            <input type="checkbox" name="SETUP" value="Accumulation">Accumulation<br>
-            <input type="checkbox" name="SETUP" value="Distribution">Distribution<br>
-            <input type="checkbox" name="SETUP" value="Re-Accumulation">Re-Accumulation<br>
-            <input type="checkbox" name="SETUP" value="Re-Distribution">Re-Distribution<br>
-          </div>
-        </div>
-
-
-          
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Password Protected Page</title>
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #dialogText {
+            color: white;
+            background-color: #333333;
+        }
         
-          <div class="flex flex-col w-full mb-4 outline">
-            <label class="field-label" for="TRENDS"><b>TRENDS</b></label>
-            
-          
-
-          <div class="formbuilder-checkbox w-full mb-4">
-            <input type="checkbox" name="TRENDS" value="1D🔼">1D🔼<br>
-            <input type="checkbox" name="TRENDS" value="4H🔼">4H🔼<br>
-            <input type="checkbox" name="TRENDS" value="1H🔼">1H🔼<br>
-            <input type="checkbox" name="TRENDS" value="15 Min🔼">15 Min🔼<br>
-            <input type="checkbox" name="TRENDS" value="LTF🔼">LTF🔼<br>
-            <input type="checkbox" name="TRENDS" value="1D🔽">1D🔽<br>
-            <input type="checkbox" name="TRENDS" value="4H🔽">4H🔽<br>
-            <input type="checkbox" name="TRENDS" value="1H🔽">1H🔽<br>
-            <input type="checkbox" name="TRENDS" value="15 Min🔽">15 Min🔽<br>
-            <input type="checkbox" name="TRENDS" value="LTF🔽">LTF🔽<br>
-          </div>
-        </div>
-
-          <div class="flex flex-col w-full mb-4 outline">
-            <label class="field-label" for="CONFLUENZE"><b>CONFLUENZE</b></label>
-            
-          
-
-          <div class="formbuilder-checkbox w-full mb-4">
-            <input type="checkbox" name="CONFLUENZE" value="BOS">BOS<br>
-            <input type="checkbox" name="CONFLUENZE" value="Price Inefficiency">Price Inefficiency<br>
-            <input type="checkbox" name="CONFLUENZE" value="Liquidity Sweep">Liquidity Sweep<br>
-            <input type="checkbox" name="CONFLUENZE" value="Confirmation Entry">Confirmation Entry<br>
-            <input type="checkbox" name="CONFLUENZE" value="Risk Entry">Risk Entry<br>
-            <input type="checkbox" name="CONFLUENZE" value="HTF Continuation">HTF Continuation<br>
-            <input type="checkbox" name="CONFLUENZE" value="HTF Retracement">HTF Retracement<br>
-            <input type="checkbox" name="CONFLUENZE" value="mBos">mBos<br>
-            <input type="checkbox" name="CONFLUENZE" value="NOBos Weak HH/LL">NOBos Weak HH/LL<br>
-            <input type="checkbox" name="CONFLUENZE" value="D2S o S2D">D2S o S2D<br>
-          </div>
-        </div>
-
+        #dialogWrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: table;
+            background-color: #EEEEEE;
+        }
         
-
-          <div class="flex flex-col w-full mb-4" id="rmissed1">
-            <label class="field-label" for="RISK %"><b>RISK %</b></label>
-            <input type="text" id="RISK" name="RISK %" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" >
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="PIPS DI STOP"><b>PIPS DI STOP</b></label>
-            <input type="text" id="PIPS DI STOP" name="PIPS DI STOP" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" required>
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="PIPS DI PROFIT"><b>PIPS DI PROFIT</b></label>
-            <input type="text" id="PIPS DI PROFIT" name="PIPS DI PROFIT" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" >
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="Loss a TP ?"><b>Loss a TP ?</b></label>
-            <select name="Loss a TP ?" id="Loss a TP ?">
-              <option value="si">si</option>
-              <option value="no">no</option>
-              <option value=""></option>
-          </select>
-          </div>
-
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="TP PRESO ? (CHIUSURA NON MANUALE)"><b>TP PRESO ? (CHIUSURA NON MANUALE)</b></label>
-            <select name="TP PRESO ? (CHIUSURA NON MANUALE)" id="TP PRESO ? (CHIUSURA NON MANUALE)">
-              <option value="si">si</option>
-              <option value="no">no</option>
-              <option value=""></option>
-          </select>
-          </div>
-
-          
-
-
-          <div class="flex flex-col w-full mb-4" id="rmissed2">
-            <label class="field-label" for="R (%)"><b>R (%)</b></label>
-            <input type="text" id="Ritorno" name="R (%)" style="background-color:powderblue" pattern="(^[+-]?[0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" >
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="R/R SET-UP"><b>R/R SET-UP</b></label>
-            <input class="bg-green-100 px-2 py-1 outline" type="text" name="R/R SET-UP" id="R/R SET-UP">
-          </div>
-
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="DIRECT LOSS ? / BE"><b>DIRECT LOSS ? / BE</b></label>
-            <select name="DIRECT LOSS ? / BE" id="DIRECT LOSS ? / BE">
-              <option value="si">si</option>
-              <option value="no">no</option>
-              <option value=""></option>
-          </select>
-          </div>
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="TIPO DI BE"><b>TIPO DI BE</b></label>
-            <select name="TIPO DI BE" id="TIPO DI BE">
-              <option value="BE a Loss">BE a Loss</option>
-              <option value="BE a TP">BE a TP</option>
-              <option value=""></option>
-          </select>
-          </div>
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="CAUSA MISSING"><b>CAUSA MISSING</b></label>
-            <select name="CAUSA MISSING" id="CAUSA MISSING">
-              <option value="Di pochi pips">Di pochi pips</option>
-              <option value="Troppa prudenza">Troppa prudenza</option>
-              <option value="Spread">Spread</option>
-              <option value=""></option>
-          </select>
-          </div>
-
-          
-
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="R/R MAX PRIMA DELLA LOSS O BE"><b>R/R MAX PRIMA DELLA LOSS O BE</b></label>
-            <input class="bg-green-100 px-2 py-1 outline" type="text" name="R/R MAX PRIMA DELLA LOSS O BE" id="R/R MAX PRIMA DELLA LOSS O BE">
-          </div>
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="Screenshot"><b>Screenshot</b></label>
-            <textarea class="bg-green-100 px-2 py-1 outline" type="text" name="Screenshot" id="Screenshot"></textarea>
-          </div>
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="ANNOTAZIONE"><b>ANNOTAZIONE</b></label>
-            <textarea class="bg-green-100 px-2 py-1 outline" type="text" name="ANNOTAZIONE" id="ANNOTAZIONE"></textarea>
-          </div>
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="Would I take this trade again?"><b>Would I take this trade again?</b></label>
-            <select name="Would I take this trade again?" id="Would I take this trade again?">
-              <option value="si">si</option>
-              <option value="no">no</option>
-          </select>
-          </div>
-
-
-          <div class="flex flex-col w-full mb-4">
-            <label class="field-label" for="Did I manage this trade according to my plan?"><b>Did I manage this trade according to my plan?</b></label>
-            <select name="Did I manage this trade according to my plan?" id="Did I manage this trade according to my plan?">
-              <option value="si">si</option>
-              <option value="no">no</option>
-          </select>
-          </div>
-
-
-
-
-
-
-
-
-          <button class="bg-orange-300 px-3 py-1 text-white mx-auto" type="submit" id="submit">Submit</button>
-        </form>
+        #dialogWrapCell {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        #mainDialog {
+            max-width: 400px;
+            margin: 5px;
+            border: solid #AAAAAA 1px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 3px #AAAAAA;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+            overflow: hidden;
+            text-align: left;
+        }
+        #mainDialog > * {
+            padding: 10px 30px;
+        }
+        #passArea {
+            padding: 20px 30px;
+            background-color: white;
+        }
+        #passArea > * {
+            margin: 5px auto;
+        }
+        #pass {
+            width: 100%;
+            height: 40px;
+            font-size: 30px;
+        }
+        
+        #messageWrapper {
+            float: left;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+        
+        .notifyText {
+            display: none;
+        }
+        
+        #invalidPass {
+            color: red;
+        }
+        
+        #success {
+            color: green;
+        }
+        
+        #submitPass {
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #E7E7E7;
+            border: solid gray 1px;
+            float: right;
+            cursor: pointer;
+        }
+        #contentFrame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #attribution {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        #attribution, #attribution a {
+            color: #999;
+        }
+        .error {
+            display: none;
+            color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
+    <div id="dialogWrap">
+        <div id="dialogWrapCell">
+            <div id="mainDialog">
+                <div id="dialogText">This page is password protected.</div>
+                <div id="passArea">
+                    <p id="passwordPrompt">Password</p>
+                    <input id="pass" type="password" name="pass" autofocus>
+                    <div>
+                        <span id="messageWrapper">
+                            <span id="invalidPass" class="error">Sorry, please try again.</span>
+                            <span id="trycatcherror" class="error">Sorry, something went wrong.</span>
+                            <span id="success" class="notifyText">Success!</span>
+                            &nbsp;
+                        </span>
+                        <button id="submitPass" type="button">Submit</button>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+                <div id="securecontext" class="error">
+                    <p>
+                        Sorry, but password protection only works over a secure connection. Please load this page via HTTPS.
+                    </p>
+                </div>
+                <div id="nocrypto" class="error">
+                    <p>
+                        Your web browser appears to be outdated. Please visit this page using a modern browser.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div id="attribution">
+        Protected by <a href="https://www.maxlaumeister.com/pagecrypt/">PageCrypt</a>
+    </div>
+    <script>
+    (function() {
 
-</body>
+        var pl = "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";
+        
+        var submitPass = document.getElementById('submitPass');
+        var passEl = document.getElementById('pass');
+        var invalidPassEl = document.getElementById('invalidPass');
+        var trycatcherror = document.getElementById('trycatcherror');
+        var successEl = document.getElementById('success');
+        var contentFrame = document.getElementById('contentFrame');
+        
+        // Sanity checks
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+        if (pl === "") {
+            submitPass.disabled = true;
+            passEl.disabled = true;
+            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
+            return;
+        }
 
-<script>
+        if (!isSecureContext) {
+            document.querySelector("#passArea").style.display = "none";
+            document.querySelector("#securecontext").style.display = "block";
+            return;
+        }
 
-$("#STATUS").change(function() {
-    if ($(this).val() == "Missed") {
-        $('#rmissed1').hide();
-        $('#rmissed2').hide();
-				$('#RISK').removeAttr('required');
-				$('#RISK').removeAttr('data-error');
-                $('#Ritorno').removeAttr('required');
-				$('#Ritorno').removeAttr('data-error');	
-    } else {
-        $('#rmissed1').show();
-        $('#rmissed2').show();
-        $('#RISK').attr('required','');
-        $('#RISK').attr('data-error', 'This field is required.');
-        $('#Ritorno').attr('required','');
-        $('#Ritorno').attr('data-error', 'This field is required.');	
-    }
-});
-$("#seeAnotherFieldGroup").trigger("change");
+        if (!crypto.subtle) {
+            document.querySelector("#passArea").style.display = "none";
+            document.querySelector("#nocrypto").style.display = "block";
+            return;
+        }
+        
+        function str2ab(str) {
+            var ustr = atob(str);
+            var buf = new ArrayBuffer(ustr.length);
+            var bufView = new Uint8Array(buf);
+            for (var i=0, strLen=ustr.length; i < strLen; i++) {
+                bufView[i] = ustr.charCodeAt(i);
+            }
+            return bufView;
+        }
 
-</script>
+        async function deriveKey(salt, password) {
+            const encoder = new TextEncoder()
+            const baseKey = await crypto.subtle.importKey(
+                'raw',
+                encoder.encode(password),
+                'PBKDF2',
+                false,
+                ['deriveKey'],
+            )
+            return await crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+                baseKey,
+                { name: 'AES-GCM', length: 256 },
+                true,
+                ['decrypt'],
+            )
+        }
+        
+        async function doSubmit(evt) {
+            submitPass.disabled = true;
+            passEl.disabled = true;
 
-<script>
-  const form = document.querySelector("#form")
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzX-ke9oA6GXo9a6UzPeR18JYSrUhPX8KDwjOq_7hx-KI5uqE94XKi5VTGcLCxsHxLQ/exec'
-const btn = document.querySelector('#submit')
+            let iv, ciphertext, key;
+            
+            try {
+                var unencodedPl = str2ab(pl);
 
-form.addEventListener('submit', e => {
-  e.preventDefault()
-  btn.disabled = true
-  btn.innerHTML = "Loading..."
+                const salt = unencodedPl.slice(0, 32)
+                iv = unencodedPl.slice(32, 32 + 16)
+                ciphertext = unencodedPl.slice(32 + 16)
 
-  const responseBody = new FormData(form)
-  const TrendBody = responseBody.getAll("TRENDS").join(" ")
-  responseBody.set('TRENDS', TrendBody)
-  const SetupBody = responseBody.getAll("SETUP").join(" ")
-  responseBody.set('SETUP', SetupBody)
-  const ConflBody = responseBody.getAll("CONFLUENZE").join(" ")
-  responseBody.set('CONFLUENZE', ConflBody)
-  
-  fetch(scriptURL, { method: 'POST', body: responseBody })
-  .then(response => { 
-            btn.disabled = false
-    btn.innerHTML = "Submit"
-          alert('Success!', response) })
-      .catch(error => {
-                   btn.disabled = false
-    btn.innerHTML = "Submit"
-          alert('Error!', error.message)})
-  })
-</script>
+                key = await deriveKey(salt, passEl.value);
+            } catch (e) {
+                trycatcherror.style.display = "inline";
+                console.error(e);
+                return;
+            }
+
+            try {
+                const decryptedArray = new Uint8Array(
+                    await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext)
+                );
+
+                let decrypted = new TextDecoder().decode(decryptedArray);
+
+                if (decrypted === "") throw "No data returned";
+
+                const basestr = '<base href="." target="_top">';
+                const anchorfixstr = `
+                    <script>
+                        Array.from(document.links).forEach((anchor) => {
+                            const href = anchor.getAttribute("href");
+                            if (href.startsWith("#")) {
+                                anchor.addEventListener("click", function(e) {
+                                    e.preventDefault();
+                                    const targetId = this.getAttribute("href").substring(1);
+                                    const targetEl = document.getElementById(targetId);
+                                    targetEl.scrollIntoView();
+                                });
+                            }
+                        });
+                    <\/script>
+                `;
+                
+                // Set default iframe link targets to _top so all links break out of the iframe
+                if (decrypted.includes("<head>")) decrypted = decrypted.replace("<head>", "<head>" + basestr);
+                else if (decrypted.includes("<!DOCTYPE html>")) decrypted = decrypted.replace("<!DOCTYPE html>", "<!DOCTYPE html>" + basestr);
+                else decrypted = basestr + decrypted;
+
+                // Fix fragment links
+                if (decrypted.includes("</body>")) decrypted = decrypted.replace("</body>", anchorfixstr + '</body>');
+                else if (decrypted.includes("</html>")) decrypted = decrypted.replace("</html>", anchorfixstr + '</html>');
+                else decrypted = decrypted + anchorfixstr;
+                
+                contentFrame.srcdoc = decrypted;
+                
+                successEl.style.display = "inline";
+                setTimeout(function() {
+                    dialogWrap.style.display = "none";
+                }, 1000);
+            } catch (e) {
+                invalidPassEl.style.display = "inline";
+                passEl.value = "";
+                submitPass.disabled = false;
+                passEl.disabled = false;
+                console.error(e);
+                return;
+            }
+        }
+        
+        submitPass.onclick = doSubmit;
+        passEl.onkeypress = function(e){
+            if (!e) e = window.event;
+            var keyCode = e.keyCode || e.which;
+            invalidPassEl.style.display = "none";
+            if (keyCode == '13'){
+              // Enter pressed
+              doSubmit();
+              return false;
+            }
+        }
+    })();
+    </script>
+  </body>
 </html>
