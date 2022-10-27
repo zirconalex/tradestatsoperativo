@@ -1,297 +1,343 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Password Protected Page</title>
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        #dialogText {
-            color: white;
-            background-color: #333333;
-        }
-        
-        #dialogWrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: table;
-            background-color: #EEEEEE;
-        }
-        
-        #dialogWrapCell {
-            display: table-cell;
-            text-align: center;
-            vertical-align: middle;
-        }
-        
-        #mainDialog {
-            max-width: 400px;
-            margin: 5px;
-            border: solid #AAAAAA 1px;
-            border-radius: 10px;
-            box-shadow: 3px 3px 5px 3px #AAAAAA;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #FFFFFF;
-            overflow: hidden;
-            text-align: left;
-        }
-        #mainDialog > * {
-            padding: 10px 30px;
-        }
-        #passArea {
-            padding: 20px 30px;
-            background-color: white;
-        }
-        #passArea > * {
-            margin: 5px auto;
-        }
-        #pass {
-            width: 100%;
-            height: 40px;
-            font-size: 30px;
-        }
-        
-        #messageWrapper {
-            float: left;
-            vertical-align: middle;
-            line-height: 30px;
-        }
-        
-        .notifyText {
-            display: none;
-        }
-        
-        #invalidPass {
-            color: red;
-        }
-        
-        #success {
-            color: green;
-        }
-        
-        #submitPass {
-            font-size: 20px;
-            border-radius: 5px;
-            background-color: #E7E7E7;
-            border: solid gray 1px;
-            float: right;
-            cursor: pointer;
-        }
-        #contentFrame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        #attribution {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            font-size: 0.8em;
-        }
-        #attribution, #attribution a {
-            color: #999;
-        }
-        .error {
-            display: none;
-            color: red;
-        }
-    </style>
-  </head>
-  <body>
-    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
-    <div id="dialogWrap">
-        <div id="dialogWrapCell">
-            <div id="mainDialog">
-                <div id="dialogText">This page is password protected.</div>
-                <div id="passArea">
-                    <p id="passwordPrompt">Password</p>
-                    <input id="pass" type="password" name="pass" autofocus>
-                    <div>
-                        <span id="messageWrapper">
-                            <span id="invalidPass" class="error">Sorry, please try again.</span>
-                            <span id="trycatcherror" class="error">Sorry, something went wrong.</span>
-                            <span id="success" class="notifyText">Success!</span>
-                            &nbsp;
-                        </span>
-                        <button id="submitPass" type="button">Submit</button>
-                        <div style="clear: both;"></div>
-                    </div>
-                </div>
-                <div id="securecontext" class="error">
-                    <p>
-                        Sorry, but password protection only works over a secure connection. Please load this page via HTTPS.
-                    </p>
-                </div>
-                <div id="nocrypto" class="error">
-                    <p>
-                        Your web browser appears to be outdated. Please visit this page using a modern browser.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-    (function() {
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Form - STATS. OPERATIVO - HTML to Sheets</title>
+       <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+        <div class="flex items-center h-full w-full bg-orange-100" style="text-align:center" >
+      <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+        <h1 class="block w-full text-center text-grey-darkest mb-6" style="font-size:300%"><u><b>Trade Form</b></u></h1>
 
-        var pl = "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";
-        
-        var submitPass = document.getElementById('submitPass');
-        var passEl = document.getElementById('pass');
-        var invalidPassEl = document.getElementById('invalidPass');
-        var trycatcherror = document.getElementById('trycatcherror');
-        var successEl = document.getElementById('success');
-        var contentFrame = document.getElementById('contentFrame');
-        
-        // Sanity checks
-
-        if (pl === "") {
-            submitPass.disabled = true;
-            passEl.disabled = true;
-            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
-            return;
-        }
-
-        if (!isSecureContext) {
-            document.querySelector("#passArea").style.display = "none";
-            document.querySelector("#securecontext").style.display = "block";
-            return;
-        }
-
-        if (!crypto.subtle) {
-            document.querySelector("#passArea").style.display = "none";
-            document.querySelector("#nocrypto").style.display = "block";
-            return;
-        }
-        
-        function str2ab(str) {
-            var ustr = atob(str);
-            var buf = new ArrayBuffer(ustr.length);
-            var bufView = new Uint8Array(buf);
-            for (var i=0, strLen=ustr.length; i < strLen; i++) {
-                bufView[i] = ustr.charCodeAt(i);
-            }
-            return bufView;
-        }
-
-        async function deriveKey(salt, password) {
-            const encoder = new TextEncoder()
-            const baseKey = await crypto.subtle.importKey(
-                'raw',
-                encoder.encode(password),
-                'PBKDF2',
-                false,
-                ['deriveKey'],
-            )
-            return await crypto.subtle.deriveKey(
-                { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
-                baseKey,
-                { name: 'AES-GCM', length: 256 },
-                true,
-                ['decrypt'],
-            )
-        }
-        
-        async function doSubmit(evt) {
-            submitPass.disabled = true;
-            passEl.disabled = true;
-
-            let iv, ciphertext, key;
+        <form class="mb-4 flex flex-wrap justify-between" id="form">
+  
+       
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="PAIR"><b>PAIR</b></label>
+            <select name="PAIR" id="PAIR">
+              <option value="usd/jpy">usd/jpy</option>
+              <option value="eur/usd">eur/usd</option>
+              <option value="gbp/usd">gbp/usd</option>
             
-            try {
-                var unencodedPl = str2ab(pl);
+              </select>
+          
+          </div>
+          
 
-                const salt = unencodedPl.slice(0, 32)
-                iv = unencodedPl.slice(32, 32 + 16)
-                ciphertext = unencodedPl.slice(32 + 16)
 
-                key = await deriveKey(salt, passEl.value);
-            } catch (e) {
-                trycatcherror.style.display = "inline";
-                console.error(e);
-                return;
-            }
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="STATUS"><b>STATUS</b></label>
+            <select name="STATUS" id="STATUS">
+              <option value="win">Win</option>
+              <option value="loss">Loss</option>
+              <option value="Breakeven">Breakeven</option>
+              <option value="Missed">Missed</option>
+            </select>
+          </div>
 
-            try {
-                const decryptedArray = new Uint8Array(
-                    await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext)
-                );
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="POSITION"><b>POSITION</b></label>
+            <select name="POSITION" id="POSITION">
+              <option value="long">long</option>
+              <option value="short">short</option>
+            </select>
+          </div>
 
-                let decrypted = new TextDecoder().decode(decryptedArray);
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="TIPO DI APERTURA"><b>TIPO DI APERTURA</b></label>
+            <select name="TIPO DI APERTURA" id="TIPO DI APERTURA" required>
+              <option value="Manuale">Manuale</option>
+              <option value="Pendente">Pendente</option>
+              <option value=""></option>
+          </select>
+          </div>
 
-                if (decrypted === "") throw "No data returned";
+          <div style="text-align:center">
+            <label for="ORARIO CHIUSURA"><b>ORARIO APERTURA:</b></label>
 
-                const basestr = '<base href="." target="_top">';
-                const anchorfixstr = `
-                    <script>
-                        Array.from(document.links).forEach((anchor) => {
-                            const href = anchor.getAttribute("href");
-                            if (href.startsWith("#")) {
-                                anchor.addEventListener("click", function(e) {
-                                    e.preventDefault();
-                                    const targetId = this.getAttribute("href").substring(1);
-                                    const targetEl = document.getElementById(targetId);
-                                    targetEl.scrollIntoView();
-                                });
-                            }
-                        });
-                    <\/script>
-                `;
-                
-                // Set default iframe link targets to _top so all links break out of the iframe
-                if (decrypted.includes("<head>")) decrypted = decrypted.replace("<head>", "<head>" + basestr);
-                else if (decrypted.includes("<!DOCTYPE html>")) decrypted = decrypted.replace("<!DOCTYPE html>", "<!DOCTYPE html>" + basestr);
-                else decrypted = basestr + decrypted;
+           <input type="datetime-local" id="ORARIO APERTURA"
+            name="ORARIO APERTURA" value="YYYY-MM-DDThh:mm">
+          </div>
 
-                // Fix fragment links
-                if (decrypted.includes("</body>")) decrypted = decrypted.replace("</body>", anchorfixstr + '</body>');
-                else if (decrypted.includes("</html>")) decrypted = decrypted.replace("</html>", anchorfixstr + '</html>');
-                else decrypted = decrypted + anchorfixstr;
-                
-                contentFrame.srcdoc = decrypted;
-                
-                successEl.style.display = "inline";
-                setTimeout(function() {
-                    dialogWrap.style.display = "none";
-                }, 1000);
-            } catch (e) {
-                invalidPassEl.style.display = "inline";
-                passEl.value = "";
-                submitPass.disabled = false;
-                passEl.disabled = false;
-                console.error(e);
-                return;
-            }
-        }
+          <div style="text-align:center">
+            <label for="ORARIO CHIUSURA"><b>ORARIO CHIUSURA:</b></label>
+
+            <input type="datetime-local" id="ORARIO CHIUSURA"
+             name="ORARIO CHIUSURA" value="YYYY-MM-DDThh:mm">
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="GIORNO DELLA SETT."><b>GIORNO DELLA SETT.</b></label>
+            <select name="GIORNO DELLA SETT." id="GIORNO DELLA SETT.">
+              <option value="lunedì">lunedì</option>
+              <option value="martedì">martedì</option>
+              <option value="mercoledì">mercoledì</option>
+              <option value="giovedì">giovedì</option>
+              <option value="venerdì">venerdì</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="SESSION"><b>SESSION</b></label>
+            <select name="SESSION" id="SESSION">
+              <option value="london">london</option>
+              <option value="new york">new york</option>
+              <option value="asian">asian</option>
+          </select>
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="DURATA TRADE"><b>DURATA TRADE</b></label>
+            <input type="text" id="DURATA TRADE" name="DURATA TRADE" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" required>
+          </div>
+
+
+          <div class="flex flex-col w-full mb-4 outline">
+            <label class="field-label" for="SETUP"><b>SETUP</b></label>
+            
+          
+
+          <div class="formbuilder-checkbox w-full mb-4">
+            <input type="checkbox" name="SETUP" value="Asian Sweep">Asian Sweep<br>
+            <input type="checkbox" name="SETUP" value="Order Block Mitigation">Order Block Mitigation<br>
+            <input type="checkbox" name="SETUP" value="Accumulation">Accumulation<br>
+            <input type="checkbox" name="SETUP" value="Distribution">Distribution<br>
+            <input type="checkbox" name="SETUP" value="Re-Accumulation">Re-Accumulation<br>
+            <input type="checkbox" name="SETUP" value="Re-Distribution">Re-Distribution<br>
+          </div>
+        </div>
+
+
+          
         
-        submitPass.onclick = doSubmit;
-        passEl.onkeypress = function(e){
-            if (!e) e = window.event;
-            var keyCode = e.keyCode || e.which;
-            invalidPassEl.style.display = "none";
-            if (keyCode == '13'){
-              // Enter pressed
-              doSubmit();
-              return false;
-            }
-        }
-    })();
-    </script>
-  </body>
+          <div class="flex flex-col w-full mb-4 outline">
+            <label class="field-label" for="TRENDS"><b>TRENDS</b></label>
+            
+          
+
+          <div class="formbuilder-checkbox w-full mb-4">
+            <input type="checkbox" name="TRENDS" value="1D🔼">1D🔼<br>
+            <input type="checkbox" name="TRENDS" value="4H🔼">4H🔼<br>
+            <input type="checkbox" name="TRENDS" value="1H🔼">1H🔼<br>
+            <input type="checkbox" name="TRENDS" value="15 Min🔼">15 Min🔼<br>
+            <input type="checkbox" name="TRENDS" value="LTF🔼">LTF🔼<br>
+            <input type="checkbox" name="TRENDS" value="1D🔽">1D🔽<br>
+            <input type="checkbox" name="TRENDS" value="4H🔽">4H🔽<br>
+            <input type="checkbox" name="TRENDS" value="1H🔽">1H🔽<br>
+            <input type="checkbox" name="TRENDS" value="15 Min🔽">15 Min🔽<br>
+            <input type="checkbox" name="TRENDS" value="LTF🔽">LTF🔽<br>
+          </div>
+        </div>
+
+          <div class="flex flex-col w-full mb-4 outline">
+            <label class="field-label" for="CONFLUENZE"><b>CONFLUENZE</b></label>
+            
+          
+
+          <div class="formbuilder-checkbox w-full mb-4">
+            <input type="checkbox" name="CONFLUENZE" value="BOS">BOS<br>
+            <input type="checkbox" name="CONFLUENZE" value="Price Inefficiency">Price Inefficiency<br>
+            <input type="checkbox" name="CONFLUENZE" value="Liquidity Sweep">Liquidity Sweep<br>
+            <input type="checkbox" name="CONFLUENZE" value="Confirmation Entry">Confirmation Entry<br>
+            <input type="checkbox" name="CONFLUENZE" value="Risk Entry">Risk Entry<br>
+            <input type="checkbox" name="CONFLUENZE" value="HTF Continuation">HTF Continuation<br>
+            <input type="checkbox" name="CONFLUENZE" value="HTF Retracement">HTF Retracement<br>
+            <input type="checkbox" name="CONFLUENZE" value="mBos">mBos<br>
+            <input type="checkbox" name="CONFLUENZE" value="NOBos Weak HH/LL">NOBos Weak HH/LL<br>
+            <input type="checkbox" name="CONFLUENZE" value="D2S o S2D">D2S o S2D<br>
+          </div>
+        </div>
+
+        
+
+          <div class="flex flex-col w-full mb-4" id="rmissed1">
+            <label class="field-label" for="RISK %"><b>RISK %</b></label>
+            <input type="text" id="RISK" name="RISK %" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" >
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="PIPS DI STOP"><b>PIPS DI STOP</b></label>
+            <input type="text" id="PIPS DI STOP" name="PIPS DI STOP" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" required>
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="PIPS DI PROFIT"><b>PIPS DI PROFIT</b></label>
+            <input type="text" id="PIPS DI PROFIT" name="PIPS DI PROFIT" style="background-color:powderblue" pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" >
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="Loss a TP ?"><b>Loss a TP ?</b></label>
+            <select name="Loss a TP ?" id="Loss a TP ?">
+              <option value="si">si</option>
+              <option value="no">no</option>
+              <option value=""></option>
+          </select>
+          </div>
+
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="TP PRESO ? (CHIUSURA NON MANUALE)"><b>TP PRESO ? (CHIUSURA NON MANUALE)</b></label>
+            <select name="TP PRESO ? (CHIUSURA NON MANUALE)" id="TP PRESO ? (CHIUSURA NON MANUALE)">
+              <option value="si">si</option>
+              <option value="no">no</option>
+              <option value=""></option>
+          </select>
+          </div>
+
+          
+
+
+          <div class="flex flex-col w-full mb-4" id="rmissed2">
+            <label class="field-label" for="R (%)"><b>R (%)</b></label>
+            <input type="text" id="Ritorno" name="R (%)" style="background-color:powderblue" pattern="(^[+-]?[0-9]+.{0,1}[0-9]*,{0,1})*[0-9]" >
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="R/R SET-UP"><b>R/R SET-UP</b></label>
+            <input class="bg-green-100 px-2 py-1 outline" type="text" name="R/R SET-UP" id="R/R SET-UP">
+          </div>
+
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="DIRECT LOSS ? / BE"><b>DIRECT LOSS ? / BE</b></label>
+            <select name="DIRECT LOSS ? / BE" id="DIRECT LOSS ? / BE">
+              <option value="si">si</option>
+              <option value="no">no</option>
+              <option value=""></option>
+          </select>
+          </div>
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="TIPO DI BE"><b>TIPO DI BE</b></label>
+            <select name="TIPO DI BE" id="TIPO DI BE">
+              <option value="BE a Loss">BE a Loss</option>
+              <option value="BE a TP">BE a TP</option>
+              <option value=""></option>
+          </select>
+          </div>
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="CAUSA MISSING"><b>CAUSA MISSING</b></label>
+            <select name="CAUSA MISSING" id="CAUSA MISSING">
+              <option value="Di pochi pips">Di pochi pips</option>
+              <option value="Troppa prudenza">Troppa prudenza</option>
+              <option value="Spread">Spread</option>
+              <option value=""></option>
+          </select>
+          </div>
+
+          
+
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="R/R MAX PRIMA DELLA LOSS O BE"><b>R/R MAX PRIMA DELLA LOSS O BE</b></label>
+            <input class="bg-green-100 px-2 py-1 outline" type="text" name="R/R MAX PRIMA DELLA LOSS O BE" id="R/R MAX PRIMA DELLA LOSS O BE">
+          </div>
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="Screenshot"><b>Screenshot</b></label>
+            <textarea class="bg-green-100 px-2 py-1 outline" type="text" name="Screenshot" id="Screenshot"></textarea>
+          </div>
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="ANNOTAZIONE"><b>ANNOTAZIONE</b></label>
+            <textarea class="bg-green-100 px-2 py-1 outline" type="text" name="ANNOTAZIONE" id="ANNOTAZIONE"></textarea>
+          </div>
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="Would I take this trade again?"><b>Would I take this trade again?</b></label>
+            <select name="Would I take this trade again?" id="Would I take this trade again?">
+              <option value="si">si</option>
+              <option value="no">no</option>
+          </select>
+          </div>
+
+
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="Did I manage this trade according to my plan?"><b>Did I manage this trade according to my plan?</b></label>
+            <select name="Did I manage this trade according to my plan?" id="Did I manage this trade according to my plan?">
+              <option value="si">si</option>
+              <option value="no">no</option>
+          </select>
+          </div>
+
+
+
+
+
+
+
+
+          <button class="bg-orange-300 px-3 py-1 text-white mx-auto" type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+  </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+<script>
+
+$("#STATUS").change(function() {
+    if ($(this).val() == "Missed") {
+        $('#rmissed1').hide();
+        $('#rmissed2').hide();
+				$('#RISK').removeAttr('required');
+				$('#RISK').removeAttr('data-error');
+                $('#Ritorno').removeAttr('required');
+				$('#Ritorno').removeAttr('data-error');	
+    } else {
+        $('#rmissed1').show();
+        $('#rmissed2').show();
+        $('#RISK').attr('required','');
+        $('#RISK').attr('data-error', 'This field is required.');
+        $('#Ritorno').attr('required','');
+        $('#Ritorno').attr('data-error', 'This field is required.');	
+    }
+});
+$("#seeAnotherFieldGroup").trigger("change");
+
+</script>
+
+<script>
+  const form = document.querySelector("#form")
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzX-ke9oA6GXo9a6UzPeR18JYSrUhPX8KDwjOq_7hx-KI5uqE94XKi5VTGcLCxsHxLQ/exec'
+const btn = document.querySelector('#submit')
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  btn.disabled = true
+  btn.innerHTML = "Loading..."
+
+  const responseBody = new FormData(form)
+  const TrendBody = responseBody.getAll("TRENDS").join(" ")
+  responseBody.set('TRENDS', TrendBody)
+  const SetupBody = responseBody.getAll("SETUP").join(" ")
+  responseBody.set('SETUP', SetupBody)
+  const ConflBody = responseBody.getAll("CONFLUENZE").join(" ")
+  responseBody.set('CONFLUENZE', ConflBody)
+  
+  fetch(scriptURL, { method: 'POST', body: responseBody })
+  .then(response => { 
+            btn.disabled = false
+    btn.innerHTML = "Submit"
+          alert('Success!', response) })
+      .catch(error => {
+                   btn.disabled = false
+    btn.innerHTML = "Submit"
+          alert('Error!', error.message)})
+  })
+</script>
 </html>
